@@ -4,6 +4,7 @@ N Queens problem solver
 """
 import sys
 
+
 def is_safe(board, row, col, N):
     """Check if it's safe to place a queen at board[row][col]"""
     for i in range(row):
@@ -13,6 +14,7 @@ def is_safe(board, row, col, N):
             return False
     return True
 
+
 def solve_nqueens(N, row=0, board=[]):
     """Recursive function to solve the N queens problem"""
     if row == N:
@@ -21,6 +23,7 @@ def solve_nqueens(N, row=0, board=[]):
     for col in range(N):
         if is_safe(board, row, col, N):
             solve_nqueens(N, row + 1, board + [col])
+
 
 def main():
     """Main function to handle input and run the solver"""
@@ -36,6 +39,7 @@ def main():
         print("N must be at least 4")
         sys.exit(1)
     solve_nqueens(N)
+
 
 if __name__ == "__main__":
     main()
