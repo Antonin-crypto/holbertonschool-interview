@@ -1,8 +1,8 @@
 #!/usr/bin/node
 
 const request = require("request");
-const movieId = process.argv[2];
 
+const movieId = process.argv[2];
 if (!movieId) {
   console.error("Usage: ./0-starwars_characters.js <Movie ID>");
   process.exit(1);
@@ -19,12 +19,17 @@ request(apiUrl, (error, response, body) => {
   const filmData = JSON.parse(body);
   const characters = filmData.characters;
 
-  characters.forEach((url) => {
-    request(url, (err, res, bdy) => {
-      if (!err) {
-        const charData = JSON.parse(bdy);
-        console.log(charData.name);
-      }
+  const getCharacter = (url) =>
+    new Promise((resolve, reject) => {
+      request(url, (err, res, body) => {
+        if (err) reject(err);
+        else resolve(JSON.parse(body).name);
+      });
     });
-  });
+
+  Promise.all(characters.map(getCharacter))
+    .then((names) => {
+      names.forEach((name) => console.log(name));
+    })
+    .catch((err) => console.error(err));
 });
