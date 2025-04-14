@@ -1,10 +1,10 @@
 #!/usr/bin/node
 
-const request = require("request");
+const request = require('request');
 
 const movieId = process.argv[2];
 if (!movieId) {
-  console.error("Usage: ./0-starwars_characters.js <Movie ID>");
+  console.error('Usage: ./0-starwars_characters.js <Movie ID>');
   process.exit(1);
 }
 
