@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+calculate trapped rainwater
+"""
+
 
 def rain(walls):
     """
