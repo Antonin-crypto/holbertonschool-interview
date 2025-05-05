@@ -1,66 +1,68 @@
-#include <stdio.h>
 #include "search_algos.h"
+#include <stdio.h>
 
 /**
- * print_array - Fonction auxiliaire pour afficher le tableau.
- * @array: Pointeur vers le premier élément du tableau à afficher.
- * @left: Indice gauche du sous-tableau à afficher.
- * @right: Indice droit du sous-tableau à afficher.
+ * print_array - Prints the current subarray being searched
+ * @array: Pointer to the array
+ * @start: Starting index
+ * @end: Ending index
  */
-void print_array(int *array, int left, int right)
+void print_array(int *array, size_t start, size_t end)
 {
-    int i;
+	size_t i;
 
-    printf("Searching in array: ");
-    for (i = left; i < right; i++)
-        printf("%d, ", array[i]);
-    printf("%d\n", array[right]);
+	printf("Searching in array: ");
+	for (i = start; i <= end; i++)
+	{
+		printf("%d", array[i]);
+		if (i != end)
+			printf(", ");
+	}
+	printf("\n");
 }
 
 /**
- * advanced_binary_recursive
- * @array: Pointeur vers le premier élément du tableau à chercher.
- * @left: Indice gauche du sous-tableau actuel.
- * @right: Indice droit du sous-tableau actuel.
- * @value: La valeur à chercher.
+ * recursive_search - Recursively searches for the first occurrence of value
+ * @array: Pointer to the array
+ * @start: Start index
+ * @end: End index
+ * @value: Value to find
  *
- * Return: L'indice de la première occurrence de la valeur,ou -1 si non trouvée
+ * Return: Index of first occurrence or -1
  */
-int advanced_binary_recursive(int *array, int left, int right, int value)
+int recursive_search(int *array, size_t start, size_t end, int value)
 {
-    int mid;
+	size_t mid;
 
-    if (right >= left)
-    {
-        mid = left + (right - left) / 2;
-        print_array(array, left, right);
+	if (start > end)
+		return (-1);
 
-        if (array[mid] == value)
-        {
-            if (mid == left || array[mid - 1] != value)
-                return (mid);
-            return (advanced_binary_recursive(array, left, mid - 1, value));
-        }
+	print_array(array, start, end);
+	mid = start + (end - start) / 2;
 
-        if (array[mid] < value)
-            return (advanced_binary_recursive(array, mid + 1, right, value));
-        return (advanced_binary_recursive(array, left, mid - 1, value));
-    }
-
-    return (-1);
+	if (array[mid] == value)
+	{
+		if (mid == start || array[mid - 1] != value)
+			return (mid);
+		return (recursive_search(array, start, mid, value));
+	}
+	if (array[mid] >= value)
+		return (recursive_search(array, start, mid, value));
+	return (recursive_search(array, mid + 1, end, value));
 }
 
 /**
- * advanced_binary - Fonction qui initie la recherche binaire.
- * @array: Pointeur vers le premier élément du tableau à chercher.
- * @size: Le nombre d'éléments dans le tableau.
- * @value: La valeur à chercher.
+ * advanced_binary - Searches for a value in a sorted array using recursion
+ * @array: Pointer to first element of array
+ * @size: Size of array
+ * @value: Value to search for
  *
- * Return: L'indice de la première occurrence de la valeur
+ * Return: Index of the value or -1 if not found
  */
 int advanced_binary(int *array, size_t size, int value)
 {
-    if (array == NULL)
-        return (-1);  // Si le tableau est NULL, on retourne -1
-    return (advanced_binary_recursive(array, 0, size - 1, value));
+	if (array == NULL || size == 0)
+		return (-1);
+
+	return (recursive_search(array, 0, size - 1, value));
 }
