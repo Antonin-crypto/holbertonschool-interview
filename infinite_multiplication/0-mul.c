@@ -3,23 +3,23 @@
 
 /**
  * is_digit - check if the str is an number
- * 
+ *
  * @str: string to check
  * Return: 1 if is digit, 0 if not
  */
-int is_digit(char * str)
+int is_digit(char *str)
 {
-  int i = 0;
+	int i = 0;
 
-  while (str[i])
-  {
-    if (str[i] < '0' || str[i] > '9')
-    {
-      return (0);
-    }
-    i++;
-  }
-  return (1);
+	while (str[i])
+	{
+		if (str[i] < '0' || str[i] > '9')
+		{
+			return (0);
+		}
+		i++;
+	}
+	return (1);
 }
 
 /**
@@ -28,13 +28,11 @@ int is_digit(char * str)
  */
 void print_error_and_exit(void)
 {
-  char *error = "Error\n";
+	char *error = "Error\n";
 
-  while (*error)
-  {
-    putchar(*error++);
-  }
-  exit(98);
+	while (*error)
+		putchar(*error++);
+	exit(98);
 }
 
 /**
