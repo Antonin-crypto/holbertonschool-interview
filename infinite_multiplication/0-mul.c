@@ -37,7 +37,7 @@ void print_error_and_exit(void)
 
 /**
  * multiply - function to multiply two numbre
- * 
+ *
  * @num1: first number
  * @num2: second number
  */
