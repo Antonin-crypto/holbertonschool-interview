@@ -1,7 +1,8 @@
 #include "holberton.h"
 
 /**
- * wildcpm - compare deux chaînes de caractére
+ * wildcmp - compare deux chaînes de caractére
+ * où s2 peut contenir le caractère spécial '*'.
  * @s1: chaîne 1
  * @s2: chaîne 2
  *
