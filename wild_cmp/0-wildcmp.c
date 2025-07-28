@@ -4,8 +4,8 @@
  * wildcpm - compare deux chaînes de caractére
  * @s1: chaîne 1
  * @s2: chaîne 2
- * 
- * Return: 1 si les chaîne sont identique, zero si ils ne le sont pas 
+ *
+ * Return: 1 si les chaîne sont identique, zero si ils ne le sont pas
  */
 
 int wildcmp(char *s1, char *s2)
