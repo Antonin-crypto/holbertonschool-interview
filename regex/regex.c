@@ -22,9 +22,6 @@ int regex_match(char const *str, char const *pattern)
 
 	if (*(pattern + 1) == '*')
 	{
-		/* Case 1: skip "x*" in pattern
-		 * Case 2: if first char matches, consume one char in str
-		 */
 		return (regex_match(str, pattern + 2) ||
 			(first_match && regex_match(str + 1, pattern)));
 	}
